@@ -20,6 +20,7 @@ class Item extends Component {
     const background = `url(${this.props.background})`
     const id=`i${this.props.num.toString()}`;
     return (
+
     	<a href={this.props.url ? this.props.url : '#'} target='_blank'>
         <li
         className='row'
