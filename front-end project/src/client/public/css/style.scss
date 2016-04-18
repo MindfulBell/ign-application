@@ -1,0 +1,109 @@
+// Work on the background Image effect/filter, use :before? 
+
+// http://codepen.io/akademy/pen/FlkzB 
+
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+#main {
+    border: 10px solid black;
+    padding: 0px;
+}
+
+// BUTTONS //
+
+.filterholder {
+    margin: 25px auto;
+    width: 80%;
+}
+.filters {
+    font-size: 1.2em;
+    background-color: white;
+    color: #C20000;
+    width: 50%;
+    border: 2px solid #C20000;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+#vidbutton {
+    border-radius: 0px 25px 25px 0px;
+    outline: none;
+}
+
+#articlebutton {
+    border-radius: 25px 0 0 25px;
+    outline: none;
+}
+
+
+// LIST OF ITEMS //
+
+ol {
+    padding-left: 0px;
+    margin-top: 30px;
+}
+
+
+li {
+    list-style-type: none;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    transition: background-position .2s ease;
+    &:hover {
+        background-position: 40% 40%;
+        color: white;
+    }
+    padding-top: 10px;
+    border-bottom: 1px solid gray;
+    white-space: nowrap;
+
+}
+
+a {
+    color: black;
+    &:hover {
+        text-decoration: none;
+        color: white;
+    }
+}
+p {
+    line-height: 100%;
+    padding: 1px;
+}
+.bold {
+    font-weight: bold;
+}
+.subtext {
+    color: gray;
+}
+.time {
+    color: gray;
+    padding-right: 15px;
+}
+.num {
+    float: left;
+    display: inline;
+    margin-right: 15px;
+    padding: 5px 2px 0px 15px;
+}
+.see-more {
+    color: gray;
+    padding-left: 35px;
+    padding-top: -20px;
+    cursor: pointer;
+    &:hover {
+        color: white;
+        text-shadow: 0px 0px 6px black;
+    }
+}
+
+#i10 {
+    border: none;
+}
