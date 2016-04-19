@@ -1,8 +1,8 @@
-// Work on the background Image effect/filter, use :before? 
-// Fix spacing of subtext
+$red: #C20000;
+$gray: #9E9E9E;
 
-// http://codepen.io/akademy/pen/FlkzB 
 
+// MAIN //
 
 
 body {
@@ -22,11 +22,10 @@ body {
     width: 80%;
 }
 .filters {
-    font-size: 1.2em;
     background-color: white;
-    color: #C20000;
+    color: $red;
     width: 50%;
-    border: 2px solid #C20000;
+    border: 2px solid $red;
     &:hover {
         text-decoration: underline;
     }
@@ -49,7 +48,6 @@ ol {
     margin-top: 30px;
 }
 
-
 li {
     list-style-type: none;
     overflow: hidden;
@@ -62,9 +60,12 @@ li {
         color: white;
     }
     padding-top: 10px;
-    border-bottom: 1px solid #BABABA;
     white-space: nowrap;
+    border-bottom: 1px solid $gray;
+}
 
+#i10 {
+    border: none;
 }
 
 a {
@@ -75,36 +76,43 @@ a {
     }
 }
 p {
+    font-size: .85em;
     line-height: 100%;
     padding: 1px;
+    margin-bottom: 5px;
 }
+
 .bold {
     font-weight: bold;
 }
+.title {
+    display: inline;
+    overflow: hidden;
+    margin-top: 15px;
+}
 .subtext {
-    color: #9E9E9E;
+    color: $gray;
+    padding-top: 3px;
 }
 .time {
-    color: #9E9E9E;
+    color: $gray;
     padding-right: 15px;
+    float: right;
 }
 .num {
     float: left;
     display: inline;
-    margin-right: 15px;
-    padding: 5px 0px 0px 15px;
+    padding: 5px 15px 0px 18px;
 }
 .see-more {
-    color: #9E9E9E;
+    transition: all .2s ease;
+    color: $gray;
     padding-left: 35px;
-    padding-top: -20px;
+    margin-top: -15px;
     cursor: pointer;
+    font-size: .7em;
     &:hover {
         color: white;
         text-shadow: 0px 0px 6px black;
     }
-}
-
-#i10 {
-    border: none;
 }

@@ -75,8 +75,8 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	// Need to fix data stuff, not pulling data correctly?
-	// Styling...done...
+	/* FRONT END PROEJCT BUILT FOR IGN CODE FOO INTERNSHIP APPLICATION
+			* built using React and some light Sass * */
 	
 	var App = function (_Component) {
 	  _inherits(App, _Component);
@@ -98,6 +98,9 @@
 	    return _this;
 	  }
 	
+	  //fetch initial data
+	
+	
 	  _createClass(App, [{
 	    key: 'getData',
 	    value: function getData(extension) {
@@ -118,12 +121,18 @@
 	        }
 	      });
 	    }
+	
+	    //get data for vids and articles 
+	
 	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      this.getData('videos');
 	      this.getData('articles');
 	    }
+	
+	    //handle clicking articles/videos
+	
 	  }, {
 	    key: 'handleClick',
 	    value: function handleClick(val) {
@@ -11064,12 +11073,14 @@
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Item).call(this, props));
 	
 			_this.hoverHandle = _this.hoverHandle.bind(_this);
-	
 			_this.state = {
 				hover: false
 			};
 			return _this;
 		}
+	
+		//handle showing background image on hover
+	
 	
 		_createClass(Item, [{
 			key: 'hoverHandle',
@@ -11082,7 +11093,7 @@
 			key: 'render',
 			value: function render() {
 				var background = 'url(' + this.props.background + ')';
-				var id = 'i' + this.props.num.toString();
+				var id = 'i' + this.props.num.toString(); // used to remove last underline on list
 				return _react2.default.createElement(
 					'a',
 					{ href: this.props.url ? this.props.url : '#', target: '_blank' },
@@ -11098,24 +11109,41 @@
 							'div',
 							null,
 							_react2.default.createElement(
-								'p',
-								{ className: 'bold num' },
-								this.props.num
+								'div',
+								{ className: 'numUL' },
+								_react2.default.createElement(
+									'p',
+									{ className: 'bold num' },
+									this.props.num
+								)
 							),
 							_react2.default.createElement(
-								'p',
-								{ className: 'bold', style: { display: 'inline', overflow: 'hidden' } },
-								this.props.title
-							),
-							_react2.default.createElement(
-								'p',
-								{ className: 'time', style: { float: 'right' } },
-								this.props.duration ? this.props.duration : ''
-							),
-							_react2.default.createElement(
-								'p',
-								{ className: 'subtext' },
-								this.props.snippet
+								'div',
+								{ className: 'itemUL' },
+								_react2.default.createElement(
+									'span',
+									null,
+									_react2.default.createElement(
+										'p',
+										{ className: 'bold title' },
+										this.props.title
+									),
+									_react2.default.createElement(
+										'p',
+										{ className: 'time' },
+										this.props.duration ? this.props.duration : ''
+									)
+								),
+								_react2.default.createElement('br', null),
+								_react2.default.createElement(
+									'div',
+									{ className: 'subtext' },
+									_react2.default.createElement(
+										'p',
+										null,
+										this.props.snippet
+									)
+								)
 							)
 						)
 					)
@@ -11143,8 +11171,6 @@
 	  value: true
 	});
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	var _react = __webpack_require__(/*! react */ 52);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -11155,83 +11181,59 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	function ItemList(props) {
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	  //get all of the video Items mapped
+	  var vidItems = props.vidData.map(function (item, ind) {
+	    var duration = item.metadata.duration;
+	    var hours = Math.floor(duration / 3600);
+	    var minutes = Math.floor(duration / 60 - hours * 60);
+	    var tempSeconds = duration - Math.floor(duration / 60) * 60;
+	    var seconds = tempSeconds > 9 ? tempSeconds : '0' + tempSeconds;
+	    duration = hours > 0 ? hours + ':' + minutes + ':' + seconds : minutes + ':' + seconds;
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	    return _react2.default.createElement(_item2.default, {
+	      key: ind,
+	      num: ind < 9 ? '0' + (ind + 1) : '10',
+	      background: item.thumbnail,
+	      url: item.metadata.url,
+	      title: item.metadata.title,
+	      snippet: item.metadata.description.slice(0, 25) + '...',
+	      duration: duration });
+	  });
 	
-	var ItemList = function (_Component) {
-	  _inherits(ItemList, _Component);
-	
-	  function ItemList(props) {
-	    _classCallCheck(this, ItemList);
-	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ItemList).call(this, props));
-	
-	    _this.state = {};
-	    return _this;
-	  }
-	
-	  _createClass(ItemList, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {}
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var vidItems = this.props.vidData.map(function (item, ind) {
-	        var duration = item.metadata.duration;
-	        var hours = Math.floor(duration / 3600);
-	        var minutes = Math.floor(duration / 60 - hours * 60);
-	        var tempSeconds = duration - Math.floor(duration / 60) * 60;
-	        var seconds = tempSeconds > 9 ? tempSeconds : '0' + tempSeconds;
-	        duration = hours > 0 ? hours + ':' + minutes + ':' + seconds : minutes + ':' + seconds;
-	        return _react2.default.createElement(_item2.default, {
-	          key: ind,
-	          num: ind < 9 ? '0' + (ind + 1) : '10',
-	          background: item.thumbnail,
-	          url: item.metadata.url,
-	          title: item.metadata.title,
-	          snippet: item.metadata.description.slice(0, 25) + '...',
-	          duration: duration });
-	      });
-	      var articleItems = this.props.articleData.map(function (item, ind) {
-	        //diff data is returned for vids + articles, so two return statements
-	        return _react2.default.createElement(_item2.default, {
-	          key: ind,
-	          num: ind < 9 ? '0' + (ind + 1) : '10',
-	          background: item.thumbnail,
-	          title: item.metadata.headline,
-	          snippet: item.metadata.headline.slice(0, 25) + '...' });
-	      });
-	
-	      return _react2.default.createElement(
+	  //get all the article items mapped
+	  var articleItems = props.articleData.map(function (item, ind) {
+	    return _react2.default.createElement(_item2.default, {
+	      key: ind,
+	      num: ind < 9 ? '0' + (ind + 1) : '10',
+	      background: item.thumbnail,
+	      title: item.metadata.headline,
+	      snippet: item.metadata.headline.slice(0, 25) + '...' });
+	  });
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'container-fluid' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'item-list' },
+	      _react2.default.createElement(
+	        'ol',
+	        null,
+	        props.active === 'videos' ? vidItems : articleItems
+	      ),
+	      _react2.default.createElement(
 	        'div',
-	        { className: 'container-fluid' },
+	        { className: 'see-more' },
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'item-list' },
-	          _react2.default.createElement(
-	            'ol',
-	            null,
-	            this.props.active === 'videos' ? vidItems : articleItems
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'see-more' },
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'SEE MORE VIDEOS'
-	            )
-	          )
+	          'p',
+	          null,
+	          'SEE MORE VIDEOS'
 	        )
-	      );
-	    }
-	  }]);
-	
-	  return ItemList;
-	}(_react.Component);
+	      )
+	    )
+	  );
+	}
 	
 	exports.default = ItemList;
 
@@ -11247,7 +11249,7 @@
 	
 	
 	// module
-	exports.push([module.id, "body {\n  font-family: 'Roboto', sans-serif;\n  font-weight: bold; }\n\n#main {\n  border: 10px solid black;\n  padding: 0px; }\n\n.filterholder {\n  margin: 25px auto;\n  width: 80%; }\n\n.filters {\n  font-size: 1.2em;\n  background-color: white;\n  color: #C20000;\n  width: 50%;\n  border: 2px solid #C20000; }\n  .filters:hover {\n    text-decoration: underline; }\n\n#vidbutton {\n  border-radius: 0px 25px 25px 0px;\n  outline: none; }\n\n#articlebutton {\n  border-radius: 25px 0 0 25px;\n  outline: none; }\n\nol {\n  padding-left: 0px;\n  margin-top: 30px; }\n\nli {\n  list-style-type: none;\n  overflow: hidden;\n  background-repeat: no-repeat;\n  background-position: 50% 50%;\n  background-size: cover;\n  transition: background-position .2s ease;\n  padding-top: 10px;\n  border-bottom: 1px solid #BABABA;\n  white-space: nowrap; }\n  li:hover {\n    background-position: 40% 40%;\n    color: white; }\n\na {\n  color: black; }\n  a:hover {\n    text-decoration: none;\n    color: white; }\n\np {\n  line-height: 100%;\n  padding: 1px; }\n\n.bold {\n  font-weight: bold; }\n\n.subtext {\n  color: #9E9E9E; }\n\n.time {\n  color: #9E9E9E;\n  padding-right: 15px; }\n\n.num {\n  float: left;\n  display: inline;\n  margin-right: 15px;\n  padding: 5px 0px 0px 15px; }\n\n.see-more {\n  color: #9E9E9E;\n  padding-left: 35px;\n  padding-top: -20px;\n  cursor: pointer; }\n  .see-more:hover {\n    color: white;\n    text-shadow: 0px 0px 6px black; }\n\n#i10 {\n  border: none; }\n", ""]);
+	exports.push([module.id, "body {\n  font-family: 'Roboto', sans-serif;\n  font-weight: bold; }\n\n#main {\n  border: 10px solid black;\n  padding: 0px; }\n\n.filterholder {\n  margin: 25px auto;\n  width: 80%; }\n\n.filters {\n  background-color: white;\n  color: #C20000;\n  width: 50%;\n  border: 2px solid #C20000; }\n  .filters:hover {\n    text-decoration: underline; }\n\n#vidbutton {\n  border-radius: 0px 25px 25px 0px;\n  outline: none; }\n\n#articlebutton {\n  border-radius: 25px 0 0 25px;\n  outline: none; }\n\nol {\n  padding-left: 0px;\n  margin-top: 30px; }\n\nli {\n  list-style-type: none;\n  overflow: hidden;\n  background-repeat: no-repeat;\n  background-position: 50% 50%;\n  background-size: cover;\n  transition: background-position .2s ease;\n  padding-top: 10px;\n  white-space: nowrap;\n  border-bottom: 1px solid #9E9E9E; }\n  li:hover {\n    background-position: 40% 40%;\n    color: white; }\n\n#i10 {\n  border: none; }\n\na {\n  color: black; }\n  a:hover {\n    text-decoration: none;\n    color: white; }\n\np {\n  font-size: .85em;\n  line-height: 100%;\n  padding: 1px;\n  margin-bottom: 5px; }\n\n.bold {\n  font-weight: bold; }\n\n.title {\n  display: inline;\n  overflow: hidden;\n  margin-top: 15px; }\n\n.subtext {\n  color: #9E9E9E;\n  padding-top: 3px; }\n\n.time {\n  color: #9E9E9E;\n  padding-right: 15px;\n  float: right; }\n\n.num {\n  float: left;\n  display: inline;\n  padding: 5px 15px 0px 18px; }\n\n.see-more {\n  transition: all .2s ease;\n  color: #9E9E9E;\n  padding-left: 35px;\n  margin-top: -15px;\n  cursor: pointer;\n  font-size: .7em; }\n  .see-more:hover {\n    color: white;\n    text-shadow: 0px 0px 6px black; }\n", ""]);
 	
 	// exports
 

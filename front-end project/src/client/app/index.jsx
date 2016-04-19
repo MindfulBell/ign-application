@@ -4,8 +4,10 @@ import "../public/css/style.scss";
 import ItemList from './item_list';
 import $ from 'jquery';
 
-// Need to fix data stuff, not pulling data correctly? 
-// Styling...done...
+/* FRONT END PROEJCT BUILT FOR IGN CODE FOO INTERNSHIP APPLICATION
+		* built using React and some light Sass * */
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +22,7 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   
+  //fetch initial data
   getData(extension){
       const self = this;
       const URL = `https://ign-apis.herokuapp.com/${extension}`;
@@ -39,12 +42,14 @@ class App extends Component {
       	}
       });
   }
-  
+
+  //get data for vids and articles  
   componentDidMount() {
   	this.getData('videos')
     this.getData('articles')
   }
 
+  //handle clicking articles/videos
   handleClick(val){
   	this.setState({active: val})
   }
@@ -53,18 +58,23 @@ class App extends Component {
   render() {
     return (
       <div id='main' className='container'>
-        <div className='filterholder'>          
+        <div className='filterholder'>       
+
           <button id='articlebutton' className='btn filters'
           style={this.state.active === 'articles' ? this.state.style : {}} 
           onClick={(e)=>{this.handleClick(e.target.innerHTML.toLowerCase())}}>Articles</button>
+
           <button id='vidbutton' className='btn filters'
           style={this.state.active === 'videos' ? this.state.style : {}} 
           onClick={(e)=>{this.handleClick(e.target.innerHTML.toLowerCase())}}>Videos</button>
+
         </div>
+
           <ItemList 
           vidData={this.state.vidData} 
           articleData={this.state.articleData}
           active={this.state.active}/>
+
       </div>
     );
   }

@@ -1,18 +1,55 @@
 Rebuilding the GG Bridge with Legos.
 (Not sure what the Avengers have to do with it...)
 
+Method A:
+
 1. I would go to http://goldengatebridge.org/research/factsGGBDesign.php (or City Hall) and find stats about the dimensions of the GG Bridge. 
 	1a. I would need the Height, Width, and Depth of all of the various parts of the GG Bridge. 
-	1b. Piers, The Deck, the Towers, Main Suspsension, and the susppension cables
-	1c. Math all of that!
+	1b. Piers, The Deck, the Towers, Main Suspsension, various supporting beams, and the susppension cables (it would be a challenge to find the suspension cable lengths as they vary as the main suspension reaches the bridge)
 
 2. Once I had the dimensions of all of those, I would have to find the volume of each respective part. 
 	2a. Pier volume = PierHeight x PierWidth x PierDepth x TotalNumofPiers
 		(repeat that process for each part of the bridge itself)
-	2b. I would then have to get all of the volumes converted to a dimension that makes sense for legos, so milimeters most likely
-	2c. Lets say my total volume of the GG bridge === X mms^3
+	2b. I would then have to get all of the volumes converted to a dimension that makes sense for legos, so meters most likely
+	2c. Lets say my total volume of the GG bridge === X ms^3
 
-3. Assuming I am going to use the medium basic lego, the volume of which = 4823.4 mm^3, I would then need to simply divide X mms^3 / 4823.4 mms^3 to get the total # of legos required to rebuild all of the parts of the GG bridge.
+3. Assuming I am going to use the medium basic lego, the volume of which = 4823.4 mm^3 (or .0000048234 ms^3), I would then need to simply divide X ms^3 / .0000048234 mms^3 to get the total # of legos required to rebuild all of the parts of the GG bridge.
 
 
 
+length of bridge: 8981 feet
+width of bridge: 89 feet
+
+towers x 2
+	tower height: 746 feet
+		each leg base: 33x54 feet (4 total, 2 for each leg)
+
+cables x2: 
+	diameter: 36 3/8 inches
+	length: 7650 feet 
+
+suspender ropes (500 of them):
+	2-11/16 inches diameter
+
+Problem is, I cannot find the depth of many of the parts of the GG bridge, only the height and width...
+
+
+
+Method B:
+
+On further inspection of the GG statistics site, I did find the total # of cubic meters of concrete and the total weight of steel used.
+I converted the weight of steel used to its volume with the help of the internet to get the following
+
+concrete used: 297,475 cubic meters of concrete
+structure steel KGs used: 75,293,000 === 9653 cubic meters of steel
+
+Total volume of material used: 307,128 ms^3 of material
+
+Total # of legos = 307,128 ms^3 / .0000048234 ms^3 (volume of a medium lego in meters cubed)
+
+Total # of legos = 63,674,586,391
+
+
+
+
+Did I get it right?
